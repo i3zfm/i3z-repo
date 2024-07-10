@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: i3z-deploy
 spec:
-  replicas: 10
+  replicas: 5
   selector:
     matchLabels:
       app: i3z-demo
