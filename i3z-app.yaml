@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: i3z-deploy
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: i3z-demo
+  template:
+    metadata:
+      labels:
+        app: i3z-demo
+    spec:
+      containers:
+      - name: i3z-demo
+        image: adzpppxbswbb/my-app:0dd15ce
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: i3z-cd-service
+spec:
+  selector:
+    app: i3z-demo
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: ClusterIP
